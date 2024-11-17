@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love You Proposal</title>
+
+  <!-- Google Analytics 4 (GA4) tracking code -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');  <!-- Replace with your GA4 Measurement ID -->
+  </script>
+
   <!-- TailwindCSS for styling -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
@@ -72,9 +82,16 @@
     const noResponse = document.getElementById('no-response');
     const yesBtnAgain = document.getElementById('yes-btn-again');
 
-    // Listen for "Yes" button click
+    // Track "Yes" button click
     yesBtn.addEventListener('click', function() {
-      console.log("The user clicked Yes!");  // Logs in the console
+      // Send event to Google Analytics
+      gtag('event', 'click', {
+        'event_category': 'Proposal',
+        'event_label': 'Yes Button',
+        'value': 1
+      });
+
+      console.log("User clicked Yes!");
 
       // Show the "Yes" response section
       yesResponse.classList.remove('hidden');
@@ -84,9 +101,16 @@
       document.querySelector('.backdrop-blur').classList.add('hidden');
     });
 
-    // Listen for "No" button click
+    // Track "No" button click
     noBtn.addEventListener('click', function() {
-      console.log("The user clicked No!");  // Logs in the console
+      // Send event to Google Analytics
+      gtag('event', 'click', {
+        'event_category': 'Proposal',
+        'event_label': 'No Button',
+        'value': 1
+      });
+
+      console.log("User clicked No!");
 
       // Show the "No" response section
       noResponse.classList.remove('hidden');
@@ -98,7 +122,14 @@
 
     // Listen for "Yes" button click again in the "No" response area
     yesBtnAgain.addEventListener('click', function() {
-      console.log("The user clicked Yes again!");  // Logs in the console
+      // Send event to Google Analytics
+      gtag('event', 'click', {
+        'event_category': 'Proposal',
+        'event_label': 'Yes Button Again',
+        'value': 1
+      });
+
+      console.log("User clicked Yes again!");
 
       // Show the "Yes" response section
       yesResponse.classList.remove('hidden');
